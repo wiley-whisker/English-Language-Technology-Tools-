@@ -27,11 +27,17 @@ def clean(text : str) -> str:
 def freq(text : str) -> Dict[str, int]:
     text = clean(text)
     freq_dict = {}
-    word_list = text.split()
+    word_list = text.lower().split()
     word_set = set(word_list)
     for word in word_set:
         freq_dict[word] = word_list.count(word)
     return freq_dict
+
+
+def sort_freqs(freqs : Dict[str, int]) -> Dict[str, int]:
+    sorted_as_lst = sorted(freqs.items(), key=lambda x : x[1], reverse=True)
+    sorted_as_dict = dict(sorted_as_lst)
+    return sorted_as_dict
 
 
 def to_file(freqs : Dict[str, int], fname) -> None:
@@ -47,7 +53,7 @@ def main():
     out_path = TEXT_PATH + out_name
 
     text = read_file(fpath)
-    freqs = freq(text)
+    freqs = sort_freqs(freq(text))
     to_file(freqs, out_path)
 
 
