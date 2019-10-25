@@ -57,6 +57,5 @@ def main():
     to_file(freqs, out_path)
 
 
-
 if __name__ == '__main__':
     main()
